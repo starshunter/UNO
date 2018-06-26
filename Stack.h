@@ -1,6 +1,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 #include "Node.h"
+
 template <typename T>
 class StackInterace
 {
@@ -99,4 +100,5 @@ T LinkedStack<T>::peek()const
     assert(!isEmpty());
     return topPtr->getItem();
 }
+
 #endif

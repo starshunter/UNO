@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Queue.h"
 #include "Stack.h"
+#include "List.h"
 using namespace std;
 
 int main()
@@ -23,5 +24,12 @@ int main()
         cout<<s.peek()<<endl;
         s.pop();
     }
+    LinkedList<string> l;
+    l.insert(1,"vnioenbvoetn");
+    l.insert(1,"vnvberetbettebetrenbvoetn");
+    l.insert(1,"vnioerstntnsrnoetn");
+    l.insert(1,"vnawegrgrehbtsrhetn");
+    l.insert(1,"vniotrhsrjstrjntn");
+    l.displayAll();
     return 0;
 }

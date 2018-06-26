@@ -1,6 +1,7 @@
 #ifndef QUEUE_H_
 #define QUEUE_H_
 #include "Node.h"
+
 template <typename T>
 class QueueInterface//QueueInterface
 {
@@ -118,4 +119,5 @@ int LinkedQueue<T>::get_size()const
 {
     return size;
 }
+
 #endif

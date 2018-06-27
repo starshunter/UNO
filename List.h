@@ -38,7 +38,6 @@ public:
     void setEntry(int position,const T &newEntry)throw(runtime_error);
     void displayAll()const;
 };
-#endif
 
 template <typename T>
 Node<T>* LinkedList<T>::getNodeAt( int position) const
@@ -189,3 +188,4 @@ void LinkedList<T>::displayAll()const
     for(int i=0;i<itemCount;i++)
         cout<<getEntry(i+1)<<endl;
 }
+#endif

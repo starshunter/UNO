@@ -15,8 +15,8 @@ template <typename T>
 class LinkedQueue:public QueueInterface<T>//LinkedQueue
 {
 private:
-    Node<T> *backPtr;
     Node<T> *frontPtr;
+    Node<T> *backPtr;
     int size;
 public:
     LinkedQueue();

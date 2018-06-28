@@ -10,14 +10,20 @@ class Player
 {
 private:
     string name;
-    LinkedList<Card> on_hand;
+    LinkedList<Card> *on_hand;
     int card_count;
 public:
     Player(string name);
     void draw_card();
     void display_all();
-    bool use_card(int pos);
+    int get_card_count();
+    Card use_card(int pos);
     bool win();
 };
+
+Player::Player(string name):name(name),card_count(0)
+{
+    on_hand=new LinkedList<Card>;
+}
 
 #endif

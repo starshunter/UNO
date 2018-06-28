@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Queue.h"
 #include "Stack.h"
 #include "List.h"
@@ -6,32 +7,58 @@
 #include "Card.h"
 using namespace std;
 
+void initialCardStack();
+void shuffle(LinkedStack<Card>&);
+void draw_card(LinkedStack<Card>&,Player);
+bool Nobody_win(LinkedQueue<Player>&);
+
 int main()
 {
-    LinkedQueue<string> q;
-    q.enqueue("123");
-    q.enqueue("1234");
-    q.enqueue("12345");
-    while(!q.isEmpty())
+    LinkedQueue<Player> Player_list;
+    int player_num;
+    //輸入玩家數目
+    cin>>player_num;
+    //輸入玩家名稱
+    for(int i=0;i<player_num;i++)
     {
-        cout<<q.peekFront()<<endl;
-        q.dequeue();
+        string name;
+        getline(cin,name);
+        Player temp(name);
+        Player_list.enqueue(temp);
     }
-    LinkedStack<string> s;
-    s.push("123");
-    s.push("1234");
-    s.push("12345");
-    while(!s.isEmpty())
+    //牌堆
+    LinkedStack<Card> CardStack;
+    //把108張牌加進牌堆
+    initialCardStack();
+    //洗牌
+    shuffle(CardStack);
+    //每位玩家抽5張牌
+    for(int i=0;i<player_num;i++)
     {
-        cout<<s.peek()<<endl;
-        s.pop();
+        Player temp=Player_list.peekFront();
+        for(int j=0;j<5;j++)
+            draw_card(CardStack,temp);
+        Player_list.dequeue();
+        Player_list.enqueue(temp);
     }
-    LinkedList<string> l;
-    l.insert(1,"1");
-    l.insert(1,"12");
-    l.insert(1,"123");
-    l.insert(1,"1234");
-    l.insert(1,"12345");
-    l.displayAll();
+    //遊戲開始
+    while(Nobody_win(Player_list))
+    {
+        Player current_player=Player_list.peekFront();
+        //顯示當前玩家所有的牌
+        current_player.display_all();
+
+        cout<<"\n你要出哪一張牌？\n\n"<<;
+        int n;
+        do
+            cin>>n;
+        while(n>current_player.get_card_count());
+        //取得玩家出的那張牌
+        Card used=current_player.use_card(n);
+        //以下開使判定這是什麼卡，然後做操作
+    }
+
+    //遊戲結束，看要印出什麼東西都可以
+
     return 0;
 }

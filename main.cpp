@@ -11,6 +11,7 @@ void initialCardStack();
 void shuffle(LinkedStack<Card>&);
 void draw_card(LinkedStack<Card>&,Player);
 bool Nobody_win(LinkedQueue<Player>&);
+void refill(LinkedStack<Card>&,LinkedStack<Card>&);
 
 int main()
 {
@@ -41,9 +42,12 @@ int main()
         Player_list.dequeue();
         Player_list.enqueue(temp);
     }
+    LinkedStack<Card> usedCard;
     //遊戲開始
     while(Nobody_win(Player_list))
     {
+        if(CardStack.isEmpty())
+            refill(CardStack,usedCard);
         Player current_player=Player_list.peekFront();
         //顯示當前玩家所有的牌
         current_player.display_all();

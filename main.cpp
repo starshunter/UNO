@@ -46,6 +46,10 @@ int main()
     //遊戲開始
     while(Nobody_win(Player_list))
     {
+        //牌局目前的顏色和數字
+        string current_color="none";
+        int current_number=-1;
+
         if(CardStack.isEmpty())
             refill(CardStack,usedCard);
         Player current_player=Player_list.peekFront();

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdexcept>
 #include "Queue.h"
 #include "Stack.h"
 #include "List.h"
@@ -56,11 +57,34 @@ int main()
         //顯示當前玩家所有的牌
         current_player.display_all();
 
-        cout<<"\n你要出哪一張牌？\n\n"<<;
-        int n;
-        do
-            cin>>n;
-        while(n>current_player.get_card_count());
+        cout<<"\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<;
+        string s;
+        int valid=0,n;
+        while(!valid)
+        {
+            try
+            {
+                getline(cin,s);
+                if(s.compare("d"))
+                {
+                    draw_card(CardStack,current_player);
+                    valid=1;
+                }
+                n=stoi(s);
+                if(n>0&&n<=current_player.get_card_count())
+                    valid=2;
+                else
+                    throw runtime_error(s);
+            }
+            catch(runtime_error r)
+            {
+                cout<<"你不能輸入";
+                cout<<" "<<r.what()<<endl;
+                cout<<"如果沒牌請按 d"<<endl;
+            }
+        }
+        if(valid==1)
+            continue;
         //取得玩家出的那張牌
         Card used=current_player.use_card(n);
         //以下開使判定這是什麼卡，然後做操作

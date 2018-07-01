@@ -43,10 +43,22 @@ int main()
         Player_list.dequeue();
         Player_list.enqueue(temp);
     }
+    //用過的牌
     LinkedStack<Card> usedCard;
     //遊戲開始
     while(Nobody_win(Player_list))
     {
+        //牌堆已經沒有牌了
+        if(CardStack.isEmpty())
+        {
+            while(!usedCard.isEmpty())
+            {
+                CardStack.push(usedCard.peek());
+                usedCard.pop();
+            }
+            shuffle(CardStack);
+        }
+
         //牌局目前的顏色和數字
         string current_color="none";
         int current_number=-1;
@@ -65,7 +77,7 @@ int main()
             try
             {
                 getline(cin,s);
-                if(s.compare("d"))
+                if(!s.compare("d"))
                 {
                     draw_card(CardStack,current_player);
                     valid=1;

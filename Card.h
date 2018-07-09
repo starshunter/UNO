@@ -8,109 +8,36 @@ class Card
 {
 private:
     string type;
+    string color;
+    int number;
 public:
+    Card(string,string,int);
     string get_type();
+    string get_color();
+    int get_number();
+    void print();
 };
 
+Card::Card(string type,string color,int number)
+{
+    this->type=type;
+    this->color=color;
+    this->number=number;
+}
 string Card::get_type()
 {
     return type;
 }
-
-class NormalCard:public Card
+string Card::get_color()
 {
-private:
-    string type;
-    int number;
-    string color;
-public:
-    NormalCard(int,string);
-    int get_number();
-    string get_color();
-};
-
-NormalCard::NormalCard(int number,string color)
-{
-    this->type="normal";
-    this->number=number;
-    this->color=color;
+    return color;
 }
-
-class ForbiddenCard:public Card
+int Card::get_number()
 {
-private:
-    string type;
-    string color;
-public:
-    ForbiddenCard(string);
-    string get_color();
-};
-
-ForbiddenCard::ForbiddenCard(string color)
-{
-    this->type="forbidden";
-    this->color=color;
+    return number;
 }
-
-class TurnaroundCard:public Card
+void Card::print()
 {
-private:
-    string type;
-    string color;
-public:
-    TurnaroundCard(string);
-    string get_color();
-};
-
-TurnaroundCard::TurnaroundCard(string color)
-{
-    this->type="turnaround";
-    this->color=color;
+    
 }
-
-class AddCard:public Card
-{
-private:
-    string type;
-    string color;
-    int add_card_num;
-public:
-    AddCard(int,string);
-    string get_color();
-    int get_add_card_num();
-};
-
-AddCard::AddCard(int add_card_num,string color)
-{
-    this->type="add";
-    this->color=color;
-    this->add_card_num=add_card_num;
-}
-
-class SelectColorCard:public Card
-{
-private:
-    string type;
-public:
-    SelectColorCard();
-};
-
-SelectColorCard::SelectColorCard()
-{
-    this->type="selectcolor";
-}
-
-class AlmightyCard:public Card
-{
-private:
-    string type;
-public:
-    AlmightyCard();
-};
-
-AlmightyCard::AlmightyCard()
-{
-    this->type="almighty";
-}
-
 #endif

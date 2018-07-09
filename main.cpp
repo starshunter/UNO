@@ -58,18 +58,18 @@ int main()
             }
             shuffle(CardStack);
         }
-
+        
         //牌局目前的顏色和數字
         string current_color="none";
         int current_number=-1;
-
+        
         if(CardStack.isEmpty())
             refill(CardStack,usedCard);
         Player current_player=Player_list.peekFront();
         //顯示當前玩家所有的牌
         current_player.display_all();
-
-        cout<<"\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<;
+        
+        cout<<"\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d";
         string s;
         int valid=0,n;
         while(!valid)
@@ -100,9 +100,43 @@ int main()
         //取得玩家出的那張牌
         Card used=current_player.use_card(n);
         //以下開使判定這是什麼卡，然後做操作
+        string card_type=used.get_type();
+        if(!card_type.compare("normal"))
+        {
+            
+        }
+        else if(!card_type.compare("forbidden"))
+        {
+            
+        }
+        else if(!card_type.compare("turnaround"))
+        {
+            
+        }
+        else if(!card_type.compare("add"))
+        {
+            
+        }
     }
-
-    //遊戲結束，看要印出什麼東西都可以
-
     return 0;
+}
+void initialCardStack()
+{
+    
+}
+void shuffle(LinkedStack<Card> &a)
+{
+    
+}
+void draw_card(LinkedStack<Card> &a,Player b)
+{
+    
+}
+bool Nobody_win(LinkedQueue<Player> &a)
+{
+    return true;
+}
+void refill(LinkedStack<Card> &a,LinkedStack<Card> &b)
+{
+    
 }

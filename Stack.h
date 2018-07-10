@@ -1,6 +1,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 #include "Node.h"
+#include <assert.h>
 
 template <typename T>
 class StackInterace

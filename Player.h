@@ -14,10 +14,11 @@ private:
     int card_count;
 public:
     Player(string name);
-    void draw_card(Card);
+    void draw(Card);
     void display_all();
     int get_card_count();
     Card use_card(int pos);
+    void remove_card(int pos);
     bool win();
 };
 
@@ -26,7 +27,7 @@ Player::Player(string name):name(name),card_count(0)
     on_hand=new LinkedList<Card>;
 }
 
-void Player::draw_card(Card add)
+void Player::draw(Card add)
 {
     on_hand->insert(1,add);
 }
@@ -72,13 +73,17 @@ int Player::get_card_count()
 Card Player::use_card(int pos)
 {
     Card temp=on_hand->getEntry(pos);
-    on_hand->remove(pos);
     return temp;
 }
 
 bool Player::win()
 {
     return card_count==0;
+}
+
+void Player::remove_card(int pos)
+{
+    on_hand->remove(pos);
 }
 
 #endif

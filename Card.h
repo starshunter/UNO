@@ -11,12 +11,19 @@ private:
     string color;
     int number;
 public:
+    Card();
     Card(string,string,int);
     string get_type();
     string get_color();
     int get_number();
     void print();
 };
+Card::Card()
+{
+    type="";
+    color="";
+    number=0;
+}
 
 Card::Card(string type,string color,int number)
 {
@@ -38,6 +45,6 @@ int Card::get_number()
 }
 void Card::print()
 {
-    
+
 }
 #endif

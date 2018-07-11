@@ -166,6 +166,10 @@ void refill(LinkedStack<Card> &cStack,LinkedStack<Card> &uStack)
 
 bool able_to_use(Card c,string current_color,int current_number)
 {
+	if(!current_color.compare("none"))
+		return true;
+	if(current_number==-1)
+		return true;
     if(!c.get_color().compare("none"))
         return true;
     if(!c.get_color().compare(current_color))

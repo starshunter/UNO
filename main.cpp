@@ -58,6 +58,8 @@ int main()
     //用過的牌
     LinkedStack<Card> usedCard;
     //遊戲開始
+    string current_color="none";
+    int current_number=-1;
     while(Nobody_win(Player_list,player_num))
     {
         //牌堆已經沒有牌了
@@ -67,9 +69,8 @@ int main()
             shuffle(CardStack);
         }
 
-        //牌局目前的顏色和數字
-        string current_color="none";
-        int current_number=-1;
+        //牌局目前的顏色和數
+        cout<<"目前顏色 "<<current_color<<" 目前數字 "<<current_number<<endl;
 
 
         Player current_player=Player_list.peekFront();
@@ -78,7 +79,7 @@ int main()
         cout<<"輪到 "<<current_player.get_name()<<" 出牌囉"<<"\n\n";
         current_player.display_all();
 
-        cout<<"\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<"\n\n\n";
+        cout<<"\n\n\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<"\n\n\n";
         string s;
         int valid=0,n;
         while(!valid)
@@ -100,8 +101,6 @@ int main()
                         throw runtime_error(s);
                     valid=2;
                 }
-                else
-                    throw runtime_error(s);
             }
             catch(runtime_error r)
             {
@@ -163,6 +162,7 @@ int main()
         {
             Player_list.enqueue(current_player);               //§w™±πL
             Player temp = Player_list.peekFront();
+            Player_list.dequeue();
             for(int i=0;i<2;i++)
             {
                 if(CardStack.isEmpty())
@@ -236,6 +236,7 @@ int main()
             current_color=s;
 
             Player temp = Player_list.peekFront();
+            Player_list.dequeue();
             for(int i=0;i<4;i++)
             {
                 if(CardStack.isEmpty())

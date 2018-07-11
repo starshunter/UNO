@@ -92,6 +92,7 @@ bool Player::win()
 void Player::remove_card(int pos)
 {
     on_hand->remove(pos);
+    card_count--;
 }
 
 #endif

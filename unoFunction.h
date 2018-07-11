@@ -6,11 +6,14 @@
 #include "Queue.h"
 #include <string>
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 void initialCardStack(LinkedStack<Card>&);
 void shuffle(LinkedStack<Card>&);
-void draw_card(LinkedStack<Card>&,Player);
+void draw_card(LinkedStack<Card>&,Player&);
 bool Nobody_win(LinkedQueue<Player>&,int);
 void refill(LinkedStack<Card>&,LinkedStack<Card>&);
 bool able_to_use(Card,string,int);
@@ -78,11 +81,13 @@ void initialCardStack(LinkedStack<Card> &cStack)
 }
 void shuffle(LinkedStack<Card> &cStack)
 {
-	LinkedStack<Card> temp;
+	srand((unsigned)time(NULL));
+	LinkedStack<Card> tempCardStack;
 	int count=0;
 	while(!cStack.isEmpty())
 	{
-		temp.push(cStack.peek());
+		Card temp=cStack.peek();
+		tempCardStack.push(temp);
 		cStack.pop();
 		count++;
 	}
@@ -90,14 +95,15 @@ void shuffle(LinkedStack<Card> &cStack)
 	Card* array2=new Card[count];
 	for(int i=0;i<count;i++)
 	{
-		Card card=temp.peek();
-		array1[i]=card;
-		temp.pop();
+		Card temp=tempCardStack.peek();
+		array1[i]=temp;
+		tempCardStack.pop();
 	}
 	int index=count;
 	bool* check = new bool[count];
 	for(int i=0;i<count;i++)
 		check[i]=false;
+
 	for(int i=0;i<count;i++)
 	{
 		int insert=rand()%index;
@@ -112,13 +118,23 @@ void shuffle(LinkedStack<Card> &cStack)
 				insert--;
 			}
 		}
-		array2[pos]=array1[i];
+		if(insert==0)
+		{
+			while(check[pos])
+				pos++;
+		}
+		Card temp=array1[i];
+		array2[pos]=temp;
+		check[pos]=true;
 		index--;
 	}
 	for(int i=0;i<count;i++)
-		cStack.push(array2[i]);
+	{
+		Card temp=array2[i];
+		cStack.push(temp);
+	}
 }
-void draw_card(LinkedStack<Card> &cStack,Player p)
+void draw_card(LinkedStack<Card> &cStack,Player &p)
 {
 	Card temp=cStack.peek();
 	cStack.pop();

@@ -14,6 +14,7 @@ private:
     int card_count;
 public:
     Player(string name);
+    string get_name();
     void draw(Card);
     void display_all();
     int get_card_count();
@@ -27,9 +28,15 @@ Player::Player(string name):name(name),card_count(0)
     on_hand=new LinkedList<Card>;
 }
 
+string Player::get_name()
+{
+    return name;
+}
+
 void Player::draw(Card add)
 {
     on_hand->insert(1,add);
+    card_count++;
 }
 
 void Player::display_all()
@@ -37,6 +44,7 @@ void Player::display_all()
     for(int i=1;i<=card_count;i++)
     {
         Card temp=on_hand->getEntry(i);
+        cout<<temp.get_type()<<" "<<temp.get_color()<<" "<<temp.get_number()<<endl;
         string type=temp.get_type();
         if(type=="normal")
         {

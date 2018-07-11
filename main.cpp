@@ -13,11 +13,28 @@ int main()
 {
     LinkedQueue<Player> Player_list;
     int player_num;
+    bool check=false;
+    cout<<"請選擇玩家人數（3 ~ 8）"<<"\n\n";
     //輸入玩家數目
-    cin>>player_num;
+    while(!check)
+    {
+        try
+        {
+            cin>>player_num;
+            if(player_num<3||player_num>8)
+                throw runtime_error(to_string(player_num));
+            check=true;
+        }
+        catch(runtime_error r)
+        {
+            cout<<"請選擇玩家人數（3 ~ 8）"<<"\n\n";
+        }
+    }
+    cin.get();
     //輸入玩家名稱
     for(int i=0;i<player_num;i++)
     {
+        cout<<"玩家 "<<i+1<<" 的名字"<<"\n\n";
         string name;
         getline(cin,name);
         Player temp(name);
@@ -46,11 +63,7 @@ int main()
         //牌堆已經沒有牌了
         if(CardStack.isEmpty())
         {
-            while(!usedCard.isEmpty())
-            {
-                CardStack.push(usedCard.peek());
-                usedCard.pop();
-            }
+            refill(CardStack,usedCard);
             shuffle(CardStack);
         }
 
@@ -58,13 +71,14 @@ int main()
         string current_color="none";
         int current_number=-1;
 
-        if(CardStack.isEmpty())
-            refill(CardStack,usedCard);
+
         Player current_player=Player_list.peekFront();
+        Player_list.dequeue();
         //顯示當前玩家所有的牌
+        cout<<"輪到 "<<current_player.get_name()<<" 出牌囉"<<"\n\n";
         current_player.display_all();
 
-        cout<<"\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d";
+        cout<<"\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<"\n\n\n";
         string s;
         int valid=0,n;
         while(!valid)
@@ -76,6 +90,7 @@ int main()
                 {
                     draw_card(CardStack,current_player);
                     valid=1;
+                    continue;
                 }
                 n=stoi(s);
                 if(n>0&&n<=current_player.get_card_count())
@@ -94,9 +109,18 @@ int main()
                 cout<<" "<<r.what()<<endl;
                 cout<<"如果沒牌請按 d"<<endl;
             }
+            catch(invalid_argument i)
+            {
+                cout<<"你不能輸入";
+                cout<<" "<<i.what()<<endl;
+                cout<<"如果沒牌請按 d"<<endl;
+            }
         }
         if(valid==1)
+        {
+            Player_list.enqueue(current_player);
             continue;
+        }
         //取得玩家出的那張牌
         Card used=current_player.use_card(n);
         current_player.remove_card(n);
@@ -142,17 +166,30 @@ int main()
             for(int i=0;i<2;i++)
             {
                 if(CardStack.isEmpty())
+                {
                     refill(CardStack,usedCard);
+                    shuffle(CardStack);
+                }
                 draw_card(CardStack,temp);
+            }
+
+            Player_list.enqueue(temp);
+            for(int i=0;i<player_num-1;i++)
+            {
+                Player temp=Player_list.peekFront();
+                Player_list.dequeue();
+                Player_list.enqueue(temp);
             }
             usedCard.push(used);
         }
         else if(!card_type.compare("SelectColor"))
         {
+            Player_list.enqueue(current_player);
+
             cout<<"請選擇顏色(red,green,yellow,blue)"<<"\n\n";
             string s;
             bool flag=false;
-            
+
             while(!flag)
             {
                 try
@@ -174,6 +211,8 @@ int main()
         }
         else if(!card_type.compare("Almighty"))
         {
+            Player_list.enqueue(current_player);
+
             cout<<"請選擇顏色(red,green,yellow,blue)"<<"\n\n";
             string s;
             bool flag=false;
@@ -195,15 +234,25 @@ int main()
             }
 
             current_color=s;
-            Player_list.enqueue(current_player);               //§w™±πL
+
             Player temp = Player_list.peekFront();
             for(int i=0;i<4;i++)
             {
                 if(CardStack.isEmpty())
+                {
                     refill(CardStack,usedCard);
+                    shuffle(CardStack);
+                }
                 draw_card(CardStack,temp);
             }
 
+            Player_list.enqueue(temp);
+            for(int i=0;i<player_num-1;i++)
+            {
+                Player temp=Player_list.peekFront();
+                Player_list.dequeue();
+                Player_list.enqueue(temp);
+            }
             usedCard.push(used);
         }
     }

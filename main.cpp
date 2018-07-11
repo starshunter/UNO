@@ -151,7 +151,7 @@ int main()
 			}
            	while(!tempPlayerStack.isEmpty())                                    //±qtemp stack•·¶^®”(∂∂ß«ßY¨€§œ)
 			{
-                Player temp=Player_list.peekFront();
+                Player temp=tempPlayerStack.peek();
 	            Player_list.enqueue(temp);
 	            tempPlayerStack.pop();
 			}

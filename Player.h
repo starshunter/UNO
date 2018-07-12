@@ -59,6 +59,7 @@ void Player::display_all()
         pos_j=((i-1)%5)*12;
         temp.print(arr,pos_i,pos_j);
     }
+
     for(int i=0;i<17*row;i++)
     {
         for(int j=0;j<60;j++)

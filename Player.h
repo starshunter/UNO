@@ -2,6 +2,7 @@
 #define PLAYER_H_
 #include "List.h"
 #include "Card.h"
+#include "ConsoleColor.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -41,13 +42,13 @@ void Player::draw(Card add)
 
 void Player::display_all()
 {
-    int row=card_count/5+1;
+    int row=(card_count-1)/5+1;
     int **arr=new int*[17*row];
     for(int i=0;i<17*row;i++)
-        arr[i]=new int[60];
+        arr[i]=new int[84];
 
     for(int i=0;i<17*row;i++)
-        for(int j=0;j<60;j++)
+        for(int j=0;j<84;j++)
             arr[i][j]=0;
 
     for(int i=1;i<=card_count;i++)
@@ -55,82 +56,88 @@ void Player::display_all()
         Card temp=on_hand->getEntry(i);
         cout<<temp.get_type()<<" "<<temp.get_color()<<" "<<temp.get_number()<<endl;
         int pos_i,pos_j;
-        pos_i=((i-1)/5)*17;
-        pos_j=((i-1)%5)*12;
+        pos_i=((i-1)/7)*17;
+        pos_j=((i-1)%7)*12;
         temp.print(arr,pos_i,pos_j);
     }
-
+    /*for(int i=0;i<17*row;i++)
+    {
+		for(int j=0;j<60;j++)
+    	{
+    		cout << arr[i][j];
+		}
+		cout << endl;
+	}*/
+	
+	cout<<white<<endl;
     for(int i=0;i<17*row;i++)
     {
-        for(int j=0;j<60;j++)
+        for(int j=0;j<84;j++)
         {
             if(arr[i][j]==0)
             {
-                cout<<"";
+                cout<<"  ";
             }
             else if(arr[i][j]==1)
             {
-                cout<<"";
+                cout<<white<<"■";
             }
             else if(arr[i][j]==2)
             {
-                cout<<"";
+                cout<<blue<<"■";
             }
             else if(arr[i][j]==3)
             {
-                cout<<"";
+                cout<<red<<"■";
             }
             else if(arr[i][j]==4)
             {
-                cout<<"";
+                cout<<yellow<<"■";
             }
             else if(arr[i][j]==5)
             {
-                cout<<"";
-            }
-            else if(arr[i][j]==6)
-            {
-                cout<<"";
+                cout<<green<<"■";
             }
             else if(arr[i][j]==7)
             {
-                cout<<"";
+                cout<<"+4";
             }
             else if(arr[i][j]==8)
             {
-                cout<<"";
+                cout<<blue<<"▂";
             }
             else if(arr[i][j]==9)
             {
-                cout<<"";
+                cout<<red<<"▂";
             }
             else if(arr[i][j]==10)
             {
-                cout<<"";
+                cout<<yellow<<"▂";
             }
             else if(arr[i][j]==11)
             {
-                cout<<"";
+                cout<<green<<"▂";
             }
             else if(arr[i][j]==12)
             {
-                cout<<"";
+                cout<<"▋";
             }
             else if(arr[i][j]==13)
             {
-                cout<<"";
+                cout<<"▋";
             }
             else if(arr[i][j]==14)
             {
-                cout<<"";
+                cout<<"▋";
             }
             else if(arr[i][j]==15)
             {
-                cout<<"";
+                cout<<"▋";
             }
         }
         cout<<"\n";
     }
+    cout<<white<<endl;
 }
 
 int Player::get_card_count()

@@ -63,8 +63,72 @@ void Player::display_all()
     {
         for(int j=0;j<60;j++)
         {
-            arr[i][j]=0;
+            if(arr[i][j]==0)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==1)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==2)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==3)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==4)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==5)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==6)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==7)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==8)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==9)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==10)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==11)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==12)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==13)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==14)
+            {
+                cout<<"";
+            }
+            else if(arr[i][j]==15)
+            {
+                cout<<"";
+            }
         }
+        cout<<"\n";
     }
 }
 

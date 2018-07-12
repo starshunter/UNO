@@ -212,6 +212,7 @@ int main()
 
             current_color=s;
             usedCard.push(used);
+            current_number=-1;
         }
         else if(!card_type.compare("Almighty"))
         {
@@ -259,6 +260,7 @@ int main()
                 Player_list.enqueue(temp);
             }
             usedCard.push(used);
+            current_number=-1;
         }
     }
     return 0;

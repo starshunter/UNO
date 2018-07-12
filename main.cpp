@@ -134,22 +134,24 @@ int main()
         }
         else if(!card_type.compare("Forbidden"))
         {
-            Player_list.enqueue(current_player);               //ß‚§H•·®Ï´·≠±(∑Ì´e™±Æa)
+            current_color=used.get_color();
+			Player_list.enqueue(current_player);               //s?§H‧·RI’·≠±(?I’e?±Aa)
             Player temp=Player_list.peekFront();
-    	    Player_list.enqueue(temp);               //ß‚§H•·®Ï´·≠±(§U§@¶Ï™±Æa)
+    	    Player_list.enqueue(temp);               //s?§H‧·RI’·≠±(§U§@?I?±Aa)
             Player_list.dequeue();
             usedCard.push(used);
         }
         else if(!card_type.compare("Turnaround"))
         {
-            LinkedStack<Player> tempPlayerStack;
-        	while(!Player_list.isEmpty())                                    //≥–§@≠”temp stack•·∂i•h
+            current_color=used.get_color();
+			LinkedStack<Player> tempPlayerStack;
+        	while(!Player_list.isEmpty())                                    //?–§@≠”temp stack‧·?i‧h
 			{
                 Player temp=Player_list.peekFront();
 	            tempPlayerStack.push(temp);
 	            Player_list.dequeue();
 			}
-           	while(!tempPlayerStack.isEmpty())                                    //±qtemp stack•·¶^®”(∂∂ß«ßY¨€§œ)
+           	while(!tempPlayerStack.isEmpty())                                    //±qtemp stack‧·?^R”(??s?sY‥€§?)
 			{
                 Player temp=tempPlayerStack.peek();
 	            Player_list.enqueue(temp);
@@ -160,7 +162,8 @@ int main()
         }
         else if(!card_type.compare("Add"))
         {
-            Player_list.enqueue(current_player);               //§w™±πL
+            current_color=used.get_color();
+			Player_list.enqueue(current_player);               //§w?±πL
             Player temp = Player_list.peekFront();
             Player_list.dequeue();
             for(int i=0;i<2;i++)

@@ -68,6 +68,7 @@ int main()
             refill(CardStack,usedCard);
             shuffle(CardStack);
         }
+        system("cls");
 
         //牌局目前的顏色和數
         cout<<"目前顏色 "<<current_color<<" 目前數字 "<<current_number<<endl;
@@ -211,6 +212,7 @@ int main()
 
             current_color=s;
             usedCard.push(used);
+            current_number=-1;
         }
         else if(!card_type.compare("Almighty"))
         {
@@ -258,6 +260,7 @@ int main()
                 Player_list.enqueue(temp);
             }
             usedCard.push(used);
+            current_number=-1;
         }
     }
     return 0;

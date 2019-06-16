@@ -71,16 +71,19 @@ int main()
         system("cls");
 
         //牌局目前的顏色和數
-        cout<<"目前顏色 "<<current_color<<" 目前數字 "<<current_number<<endl;
-
-
+        if(current_number==-1&&current_color=="none")
+			cout<<"目前沒有顏色也沒有數字 "<<endl; 
+		else if(current_number==-1)
+        	cout<<"目前顏色 "<<current_color<<" 目前沒有數字 "<<endl;
+		else
+			cout<<"目前顏色 "<<current_color<<" 目前數字 "<<current_number<<endl; 
         Player current_player=Player_list.peekFront();
         Player_list.dequeue();
         //顯示當前玩家所有的牌
         cout<<"輪到 "<<current_player.get_name()<<" 出牌囉"<<"\n\n";
         current_player.display_all();
 
-        cout<<"\n\n\n"<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<"\n\n\n";
+        cout<<"你要出哪一張牌？"<<"\n\n"<<"抽牌請按 d"<<"\n\n\n";
         string s;
         int valid=0,n;
         while(!valid)

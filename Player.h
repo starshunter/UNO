@@ -54,7 +54,8 @@ void Player::display_all()
     for(int i=1;i<=card_count;i++)
     {
         Card temp=on_hand->getEntry(i);
-        cout<<temp.get_type()<<" "<<temp.get_color()<<" "<<temp.get_number()<<endl;
+    //    cout<<temp.get_type()<<" "<<temp.get_color()<<" "<<temp.get_number()<<endl;
+  
         int pos_i,pos_j;
         pos_i=((i-1)/7)*17;
         pos_j=((i-1)%7)*12;
